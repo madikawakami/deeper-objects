@@ -67,6 +67,19 @@ console.log(isItEnabled(preview));
 *
 * Return 	value from key enabled (boolean)
 */
+function returnEnabled(data){
+	//console.log(data.enabled);
+	data.enabled = true;
+	for (var key in data){
+		//console.log(data[key]);
+		if(key === "enable"){
+			data[key] = true;
+		}
+	}
+	return data.enabled;
+}
+
+console.log(returnEnabled(preview));
 
 /*
 * Function that retrieves the urls only from the key "resolutions" 
@@ -74,7 +87,30 @@ console.log(isItEnabled(preview));
 * 
 * Return 	urls (array)
 */
-
+// function retrieveResolutions(data){
+	var urls = [];
+	//console.log(data);
+	//console.log(data.images[0].resolutions);
+	//for (var url = 0; url < data.images[0].resolutions.length; url ++){
+		//console.log(url);
+		var dataResolutions = data.images[0].resolutions;
+		for (var i = 0; i < dataResolutions.length; i++){
+			console.log(dataResolutions[i]);
+			for (var key in dataResolutions[i]){
+				console.log(key);
+				if (key === "url"){
+					urls.push(dataResolutions[i][key]);
+					console.log(urls);
+				}
+			}
+		}
+		return urls;
+// 		for (var key in data.images[0].resolutions){
+// 			console.log(data.images[0].resolutions[key].url);
+// 		}
+// 	return urls;																																					
+// }
+// retrieveResolutions(preview);
 /*
 * Function that retrieves the first nested key and value pairing
 * from the values of "images", stores them in a new object called 
